@@ -1,0 +1,5 @@
+Mail birthday card	buy a 31th birdthsy card for Costin	18-02-2023
+doctor	go to doctor	18-05-2023
+buy cake	buy a 31th birdtasy cake for Costin	17-02-2023
+be happy	dance	06-07-2023
+vet	take the do to the doctor	18-02-2022
