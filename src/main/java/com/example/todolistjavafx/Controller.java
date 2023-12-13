@@ -10,10 +10,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextArea;
 
-import java.time.LocalDate;
-import java.time.Month;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Controller {
@@ -33,31 +30,31 @@ public class Controller {
     @FXML
     private Label deadlineLabel;
 
-    public void initialize(){
-        TodoItem item = new TodoItem("Mail birthday card", "buy a 31th birthday card for my sister",
-                LocalDate.of(2023, Month.FEBRUARY, 18));
-        TodoItem item1 = new TodoItem("Doctor", "go to doctor for the second opinion",
-                LocalDate.of(2023, Month.MAY, 18));
-        TodoItem item2 = new TodoItem("Cake", "Buy a 31th birthday cake for mom",
-                LocalDate.of(2023, Month.FEBRUARY, 17));
-        TodoItem item3 = new TodoItem("Clean", "Clean the garage",
-                LocalDate.of(2023, Month.JULY, 6));
-        TodoItem item4 = new TodoItem("Vet", "Take the dog to the doctor",
-                LocalDate.of(2022, Month.FEBRUARY, 18));
-
-        todoItems = new ArrayList<>();
-        todoItems.add(item);
-        todoItems.add(item1);
-        todoItems.add(item2);
-        todoItems.add(item3);
-        todoItems.add(item4);
-
-        ToDoData.getInstance().setTodoItems(todoItems);
+    public void initialize() {
+//        TodoItem item = new TodoItem("Mail birthday card", "buy a 31th birthday card for my sister",
+//                LocalDate.of(2023, Month.FEBRUARY, 18));
+//        TodoItem item1 = new TodoItem("Doctor", "go to doctor for the second opinion",
+//                LocalDate.of(2023, Month.MAY, 18));
+//        TodoItem item2 = new TodoItem("Cake", "Buy a 31th birthday cake for mom",
+//                LocalDate.of(2023, Month.FEBRUARY, 17));
+//        TodoItem item3 = new TodoItem("Clean", "Clean the garage",
+//                LocalDate.of(2023, Month.JULY, 6));
+//        TodoItem item4 = new TodoItem("Vet", "Take the dog to the doctor",
+//                LocalDate.of(2022, Month.FEBRUARY, 18));
+//
+//        todoItems = new ArrayList<>();
+//        todoItems.add(item);
+//        todoItems.add(item1);
+//        todoItems.add(item2);
+//        todoItems.add(item3);
+//        todoItems.add(item4);
+//
+//        ToDoData.getInstance().setTodoItems(todoItems);
 
         todoListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<TodoItem>() {
             @Override
             public void changed(ObservableValue<? extends TodoItem> observableValue, TodoItem oldValue, TodoItem newValue) {
-                if(newValue != null){
+                if (newValue != null) {
                     TodoItem item = todoListView.getSelectionModel().getSelectedItem();
                     itemDetailsTextArea.setText(item.getDetails());
                     DateTimeFormatter df = DateTimeFormatter.ofPattern("d MMMM, yyyy");
@@ -66,12 +63,13 @@ public class Controller {
             }
         });
 
-        todoListView.getItems().setAll(todoItems);
+        todoListView.getItems().setAll(ToDoData.getInstance().getTodoItems());
         todoListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         todoListView.getSelectionModel().selectFirst();
     }
+
     @FXML
-    public void handleClickListView(){
+    public void handleClickListView() {
         TodoItem item = todoListView.getSelectionModel().getSelectedItem();
         itemDetailsTextArea.setText(item.getDetails());
         deadlineLabel.setText(item.getDeadline().toString());

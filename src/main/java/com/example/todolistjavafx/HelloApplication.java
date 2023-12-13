@@ -31,4 +31,14 @@ public class HelloApplication extends Application {
             System.out.println(e.getMessage());
         }
     }
+
+    @Override
+    public void init() throws Exception {
+        try{
+            ToDoData.getInstance().loadTodoItems();
+
+        } catch (IOException e){
+            System.out.println(e.getMessage());
+        }
+    }
 }
