@@ -5,4 +5,6 @@ module com.example.todolistjavafx {
 
     opens com.example.todolistjavafx to javafx.fxml;
     exports com.example.todolistjavafx;
+    exports com.example.todolistjavafx.Controller;
+    opens com.example.todolistjavafx.Controller to javafx.fxml;
 }
