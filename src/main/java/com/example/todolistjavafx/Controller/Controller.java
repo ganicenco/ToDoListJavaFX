@@ -4,6 +4,8 @@ import com.example.todolistjavafx.datamodel.ToDoData;
 import com.example.todolistjavafx.datamodel.TodoItem;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
@@ -28,8 +30,20 @@ public class Controller {
     private Label deadlineLabel;
     @FXML
     private BorderPane mainBorderPane;
+    private ContextMenu listContextMenu;
 
     public void initialize() {
+        listContextMenu = new ContextMenu();
+        MenuItem deleteMenuItem = new MenuItem("Delete");
+        deleteMenuItem.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                TodoItem item = todoListView.getSelectionModel().getSelectedItem();
+                deleteItem(item);
+            }
+        });
+
+        listContextMenu.getItems().addAll(deleteMenuItem);
         todoListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<TodoItem>() {
             @Override
             public void changed(ObservableValue<? extends TodoItem> observableValue, TodoItem oldValue, TodoItem newValue) {
@@ -53,19 +67,27 @@ public class Controller {
                     @Override
                     protected void updateItem(TodoItem item, boolean empty) {
                         super.updateItem(item, empty);
-                        if(empty) {
+                        if (empty) {
                             setText(null);
                         } else {
                             setText(item.getShortDescription());
-                            if (item.getDeadline().isBefore(LocalDate.now().plusDays(1))){
+                            if (item.getDeadline().isBefore(LocalDate.now().plusDays(1))) {
                                 setTextFill(Color.RED);
-                            } else if (item.getDeadline().equals(LocalDate.now().plusDays(1))){
+                            } else if (item.getDeadline().equals(LocalDate.now().plusDays(1))) {
                                 setTextFill(Color.BROWN);
                             }
                         }
                     }
                 };
-
+                cell.emptyProperty().addListener(
+                        (obs, wasEmpty, isNowEmpty) -> {
+                            if (isNowEmpty){
+                                cell.setContextMenu(null);
+                            } else {
+                                cell.setContextMenu(listContextMenu);
+                            }
+                        }
+                );
                 return cell;
             }
         });
@@ -103,6 +125,18 @@ public class Controller {
         TodoItem item = todoListView.getSelectionModel().getSelectedItem();
         itemDetailsTextArea.setText(item.getDetails());
         deadlineLabel.setText(item.getDeadline().toString());
+    }
+
+    public void deleteItem(TodoItem item) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Delete Todo Item");
+        alert.setHeaderText("Delete item: " + item.getShortDescription());
+        alert.setContentText("Are you sure you want to delete it?");
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.isPresent() && (result.get() == ButtonType.OK)) {
+            ToDoData.getInstance().deleteToDoItem(item);
+        }
 
 
     }

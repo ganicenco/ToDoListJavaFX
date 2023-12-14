@@ -1,5 +1,4 @@
 Mail birthday card	buy a 31th birthday card for my sister	18-02-2023
-Doctor	go to doctor for the second opinion	18-05-2023
 Cake	Buy a 31th birthday cake for mom	17-02-2023
 Clean	Clean the garage	06-07-2023
 Vet	Take the dog to the doctor	18-02-2022
@@ -7,12 +6,8 @@ my new itm	this is a new to do item	11-12-2023
 test	longer test	21-12-2023
 test	longer test	21-12-2023
 second test	short test	23-12-2023
-second test	short test	23-12-2023
-this is a record	test for color	14-12-2023
 this is a record	test for color	14-12-2023
 few	ewf	14-12-2023
-few	ewf	14-12-2023
-f	fe	14-12-2023
 f	fe	14-12-2023
 test	test bug	14-12-2023
 for tomorrow	due tomorrow	15-12-2023

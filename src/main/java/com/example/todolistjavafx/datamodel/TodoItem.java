@@ -17,20 +17,20 @@ public class TodoItem {
         return shortDescription;
     }
 
-    public String getDetails() {
-        return details;
-    }
-
-    public LocalDate getDeadline() {
-        return deadline;
-    }
-
     public void setShortDescription(String shortDescription) {
         this.shortDescription = shortDescription;
     }
 
+    public String getDetails() {
+        return details;
+    }
+
     public void setDetails(String details) {
         this.details = details;
+    }
+
+    public LocalDate getDeadline() {
+        return deadline;
     }
 
     public void setDeadline(LocalDate deadline) {
