@@ -4,7 +4,6 @@ Clean	Clean the garage	06-07-2023
 Vet	Take the dog to the doctor	18-02-2022
 my new itm	this is a new to do item	11-12-2023
 test	longer test	21-12-2023
-test	longer test	21-12-2023
 second test	short test	23-12-2023
 this is a record	test for color	14-12-2023
 few	ewf	14-12-2023
